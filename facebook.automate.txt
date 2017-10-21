@@ -1,0 +1,36 @@
+function foo(){
+   var d= Date.now();
+   var t = document.getElementsByClassName('_25e2')[0].textContent;
+   var t_time = t.split("-")[0].split(":");
+   var time_length = t_time.length;
+   var tot = 0;
+   if(time_length == 2 ){
+    var fin_min = parseInt(t_time[0]);
+    var fin_sec = parseInt(t_time[1]);
+     tot = 60*fin_min + fin_sec ;
+     tot *= 1000;
+     
+   } else if(time_length == 3){
+    var fin_hr = parseInt(t_time[0]);
+    var fin_min = parseInt(t_time[1]);
+    var fin_sec = parseInt(t_time[2]); 
+     tot = 60*60*fin_hr+60*60*fin_min + fin_sec ;
+     tot *= 1000;
+   }
+var loop = setInterval(function(){ var temp_date = Date.now();
+                        if(temp_date-d >=  tot ){
+                            try{
+							
+                              document.getElementsByClassName('snowliftPager')[1].click();
+                            } catch(err){
+                              console.log(err);
+                            }
+                          clearInterval(loop);
+						  
+						  setTimeout(foo,120000);
+                          }
+                      }, 1000);
+  
+  }
+foo();
+
